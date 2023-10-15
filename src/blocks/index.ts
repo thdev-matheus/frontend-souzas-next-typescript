@@ -1,3 +1,6 @@
 import { LoginFormBlock } from "./LoginFormBlock";
 
-export { LoginFormBlock };
+import { DashChatBlock } from "./DashChatBlock";
+import { FormChatBlock } from "./FormChatBlock";
+
+export { LoginFormBlock, DashChatBlock, FormChatBlock };

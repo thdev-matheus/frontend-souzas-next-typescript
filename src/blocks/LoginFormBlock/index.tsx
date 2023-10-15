@@ -2,6 +2,7 @@
 
 import * as S from "./styles";
 import * as C from "@/components";
+import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -12,6 +13,8 @@ interface IUserLogin {
 }
 
 export const LoginFormBlock = () => {
+  const router = useRouter();
+
   const { reset, handleSubmit, register } = useForm<IUserLogin>({
     reValidateMode: "onSubmit",
   });
@@ -30,6 +33,7 @@ export const LoginFormBlock = () => {
 
     console.log(data);
     reset();
+    router.push("/chat");
   };
 
   return (
