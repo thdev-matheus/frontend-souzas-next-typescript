@@ -33,6 +33,7 @@ export const InputContainer = styled.div<ISInputProps>`
   height: 90%;
 
   display: flex;
+  align-items: center;
 
   padding: 0.5rem;
 
