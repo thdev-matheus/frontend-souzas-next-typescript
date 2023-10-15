@@ -14,7 +14,7 @@ export const useDarkMode = () => {
 };
 
 export const DarkModeProvider = ({ children }: T.IDarkModeProviderProps) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
