@@ -19,7 +19,8 @@
     "react-input-mask": "^2.0.4",
     "styled-components": "^6.1.0",
     "typewriter-effect": "^2.21.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "typescript": "^5",
