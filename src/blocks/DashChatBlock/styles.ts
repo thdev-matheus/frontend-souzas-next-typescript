@@ -14,6 +14,26 @@ export const Container = styled.section`
     width: 100%;
     height: 90%;
 
+    overflow: hidden auto;
+  }
+
+  @media (min-width: 1920px) {
+  }
+`;
+
+export const BoxMessages = styled.section`
+  @media (min-width: 481px) {
+  }
+
+  @media (min-width: 768px) {
+  }
+
+  @media (min-width: 992px) {
+  }
+
+  @media (min-width: 1200px) {
+    width: 100%;
+
     display: flex;
     flex-direction: column-reverse;
 

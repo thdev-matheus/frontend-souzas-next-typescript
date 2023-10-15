@@ -6,6 +6,7 @@ import * as C from "@/components";
 
 import { MessageBox, SystemMessage } from "react-chat-elements";
 import "react-chat-elements/dist/main.css";
+import { useEffect } from "react";
 
 // export interface IMessage {
 //   id: string | number
@@ -46,70 +47,77 @@ export const DashChatBlock = () => {
     statusTitle: "",
     className: "msg_box",
   };
+
+  useEffect(() => {
+    document.getElementById("daschatmessages")?.scrollTo(0, 600000);
+  }, []);
+
   return (
-    <S.Container className="dashboard">
-      {messages.map((msg, i, arr) => (
-        <>
-          {msg.user?.id !== arr[i - 1]?.user?.id && (
-            <C.Separator height="2rem" />
-          )}
-          {msg.type === "text" ? (
-            <>
+    <S.Container id="daschatmessages">
+      <S.BoxMessages>
+        {messages.map((msg, i, arr) => (
+          <>
+            {msg.user?.id !== arr[i - 1]?.user?.id && (
+              <C.Separator height="2rem" />
+            )}
+            {msg.type === "text" ? (
+              <>
+                <MessageBox
+                  id={msg.id}
+                  type="text"
+                  position={msg.user?.id == user.id ? "right" : "left"}
+                  text={msg.text!}
+                  title={msg.user!.username}
+                  date={msg.date}
+                  avatar={msg.user!.image}
+                  reply={msg.replyData}
+                  status="received"
+                  notch={msg.user?.id == user.id ? true : false}
+                  {...msgProps}
+                />
+              </>
+            ) : msg.type === "system" ? (
+              <SystemMessage
+                id={msg.id}
+                type="system"
+                position=""
+                text={msg.text!}
+                title=""
+                date={msg.date}
+                status="received"
+                notch={false}
+                {...msgProps}
+              />
+            ) : msg.type == "photo" ? (
               <MessageBox
                 id={msg.id}
-                type="text"
+                type="photo"
                 position={msg.user?.id == user.id ? "right" : "left"}
-                text={msg.text!}
+                text=""
                 title={msg.user!.username}
                 date={msg.date}
                 avatar={msg.user!.image}
                 reply={msg.replyData}
                 status="received"
+                data={{
+                  ...msg.data!,
+                  width: 200,
+                  height: 100,
+                  status: {
+                    click: () => {},
+                  },
+                }}
                 notch={msg.user?.id == user.id ? true : false}
                 {...msgProps}
+                onClick={() => {
+                  // função para abrir modal de foto
+                  console.log("clickou");
+                }}
               />
-            </>
-          ) : msg.type === "system" ? (
-            <SystemMessage
-              id={msg.id}
-              type="system"
-              position=""
-              text={msg.text!}
-              title=""
-              date={msg.date}
-              status="received"
-              notch={false}
-              {...msgProps}
-            />
-          ) : msg.type == "photo" ? (
-            <MessageBox
-              id={msg.id}
-              type="photo"
-              position={msg.user?.id == user.id ? "right" : "left"}
-              text=""
-              title={msg.user!.username}
-              date={msg.date}
-              avatar={msg.user!.image}
-              reply={msg.replyData}
-              status="received"
-              data={{
-                ...msg.data!,
-                width: 200,
-                height: 100,
-                status: {
-                  click: () => {},
-                },
-              }}
-              notch={msg.user?.id == user.id ? true : false}
-              {...msgProps}
-              onClick={() => {
-                // função para abrir modal de foto
-                console.log("clickou");
-              }}
-            />
-          ) : null}
-        </>
-      ))}
+            ) : null}
+          </>
+        ))}
+      </S.BoxMessages>
     </S.Container>
   );
 };

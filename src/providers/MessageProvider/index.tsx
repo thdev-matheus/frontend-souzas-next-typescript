@@ -24,6 +24,95 @@ export const MessageProvider = ({ children }: T.IMessageProviderProps) => {
     {
       id: uuid(),
       type: "text",
+      user: user,
+      text: "Mensagem de teste",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: user,
+      text: "Mensagem de teste",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: user,
+      text: "Mensagem de teste",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: user,
+      text: "Mensagem de teste",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: user,
+      text: "Mensagem de teste",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: user,
+      text: "Mensagem de teste",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: user,
+      text: "Mensagem de teste",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: user,
+      text: "Mensagem de teste",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: user,
+      text: "Mensagem de teste",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: {
+        id: "jessid",
+        image:
+          "https://cdn1.epicgames.com/offer/83c7eb83fadd4a41ad2367dbf17705fc/EGS_ImpoftheSun_SunwolfEntertainment_S1_03_2560x1440-3b70259304f76cfbc09f141aaaf205e6",
+        name: "Jess Vieira",
+        username: "Jess",
+      },
+      text: "Mensagem de teste de outra pessoa",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
+      user: {
+        id: "jessid",
+        image:
+          "https://cdn1.epicgames.com/offer/83c7eb83fadd4a41ad2367dbf17705fc/EGS_ImpoftheSun_SunwolfEntertainment_S1_03_2560x1440-3b70259304f76cfbc09f141aaaf205e6",
+        name: "Jess Vieira",
+        username: "Jess",
+      },
+      text: "Mensagem de teste de outra pessoa",
+      date: new Date(),
+    },
+    {
+      id: uuid(),
+      type: "text",
       user: {
         id: "jessid",
         image:
