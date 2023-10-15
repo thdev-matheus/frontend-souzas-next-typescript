@@ -50,12 +50,11 @@ export const BoxLogo = styled.section`
 
     & > h1 {
       font-size: 40pt;
-
-      color: ${(props) => props.theme.primary};
     }
 
     & > h2 {
       font-size: 20pt;
+      font-weight: lighter;
 
       color: ${(props) => props.theme.secondary};
     }
