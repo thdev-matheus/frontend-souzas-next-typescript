@@ -14,7 +14,14 @@ export const Container = styled.section`
     width: 100%;
     height: 90%;
 
-    border: 1px solid magenta;
+    display: flex;
+    flex-direction: column-reverse;
+
+    padding: 1rem;
+
+    & > .msg_box {
+      color: ${(props) => props.theme.txtSecondary};
+    }
   }
 
   @media (min-width: 1920px) {
