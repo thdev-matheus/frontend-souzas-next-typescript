@@ -67,12 +67,23 @@ export const DashChatBlock = () => {
                   type="text"
                   position={msg.user?.id == user.id ? "right" : "left"}
                   text={msg.text!}
-                  title={msg.user!.username}
+                  title={
+                    msg.user?.id !== arr[i - 1]?.user?.id
+                      ? ""
+                      : msg.user!.username
+                  }
                   date={msg.date}
-                  avatar={msg.user!.image}
+                  avatar={
+                    msg.user?.id !== arr[i - 1]?.user?.id ? "" : msg.user!.image
+                  }
                   reply={msg.replyData}
                   status="received"
-                  notch={msg.user?.id == user.id ? true : false}
+                  notch={
+                    msg.user?.id == user.id &&
+                    !(msg.user?.id !== arr[i - 1]?.user?.id)
+                      ? true
+                      : false
+                  }
                   {...msgProps}
                 />
               </>

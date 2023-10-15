@@ -3,6 +3,7 @@ import { IUser } from "../UserProvider/types";
 
 export interface IMessageContext {
   messages: IMessage[];
+  addMessage: (msg: IMessage[]) => void;
 }
 
 export interface IMessageProviderProps {

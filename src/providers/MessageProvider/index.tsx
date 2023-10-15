@@ -2,11 +2,9 @@
 
 import { createContext, useState, useEffect, useContext } from "react";
 import * as T from "./types";
-import * as U from "@/utils";
 
 import { v4 as uuid } from "uuid";
 import { useUser } from "../UserProvider";
-
 const MessageContext = createContext<T.IMessageContext>(
   {} as T.IMessageContext
 );
@@ -21,55 +19,6 @@ export const MessageProvider = ({ children }: T.IMessageProviderProps) => {
   const { user } = useUser();
 
   const [messages, setMessages] = useState<T.IMessage[]>([
-    {
-      id: uuid(),
-      type: "text",
-      user: user,
-      text: "Mensagem de teste",
-      date: new Date(),
-    },
-    {
-      id: uuid(),
-      type: "text",
-      user: user,
-      text: "Mensagem de teste",
-      date: new Date(),
-    },
-    {
-      id: uuid(),
-      type: "text",
-      user: user,
-      text: "Mensagem de teste",
-      date: new Date(),
-    },
-    {
-      id: uuid(),
-      type: "text",
-      user: user,
-      text: "Mensagem de teste",
-      date: new Date(),
-    },
-    {
-      id: uuid(),
-      type: "text",
-      user: user,
-      text: "Mensagem de teste",
-      date: new Date(),
-    },
-    {
-      id: uuid(),
-      type: "text",
-      user: user,
-      text: "Mensagem de teste",
-      date: new Date(),
-    },
-    {
-      id: uuid(),
-      type: "text",
-      user: user,
-      text: "Mensagem de teste",
-      date: new Date(),
-    },
     {
       id: uuid(),
       type: "text",
@@ -178,8 +127,12 @@ export const MessageProvider = ({ children }: T.IMessageProviderProps) => {
     },
   ]);
 
+  const addMessage = (msg: T.IMessage[]) => {
+    setMessages([...msg, ...messages]);
+  };
+
   return (
-    <MessageContext.Provider value={{ messages }}>
+    <MessageContext.Provider value={{ messages, addMessage }}>
       {children}
     </MessageContext.Provider>
   );
