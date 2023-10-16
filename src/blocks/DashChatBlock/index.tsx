@@ -4,9 +4,8 @@ import * as S from "./styles";
 import * as CTX from "@/providers";
 import * as C from "@/components";
 
-import { MessageBox, SystemMessage } from "react-chat-elements";
-import "react-chat-elements/dist/main.css";
 import { useEffect } from "react";
+import { v4 as uuid } from "uuid";
 
 export const DashChatBlock = () => {
   const { messages } = CTX.useMessages();
@@ -29,12 +28,17 @@ export const DashChatBlock = () => {
               : "left";
 
           return notch ? (
-            <>
+            <div key={uuid()}>
               <C.Separator height="1rem" />
               <C.SpetchBubble message={msg} position={position} notch={notch} />
-            </>
+            </div>
           ) : (
-            <C.SpetchBubble message={msg} position={position} notch={notch} />
+            <C.SpetchBubble
+              key={uuid()}
+              message={msg}
+              position={position}
+              notch={notch}
+            />
           );
         })}
       </S.BoxDash>
