@@ -14,6 +14,10 @@ export const Container = styled.section`
     width: 100%;
     height: 90%;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
     padding: 3rem 10vw;
 
     overflow: hidden auto;

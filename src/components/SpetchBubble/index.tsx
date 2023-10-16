@@ -11,7 +11,7 @@ export const SpetchBubble = ({
   return (
     <S.Container position={position} notch={notch}>
       <S.Bubble notch={notch} position={position} className="bubble">
-        <h4>{message.user?.username}</h4>
+        {notch && <h4>{message.user?.username}</h4>}
         {message.content.map((txt) => (
           <p key={message.id}>{txt}</p>
         ))}

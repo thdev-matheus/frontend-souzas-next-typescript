@@ -18,7 +18,19 @@ export const DashChatBlock = () => {
 
   return (
     <S.Container id="dashchatmessages">
-      <C.SpetchBubble message={messages[0]} position="left" />
+      {messages.map((msg, i, arr) => {
+        const notch = !(msg.user?.username === arr[i - 1]?.user?.username);
+        const position: "left" | "right" | "center" =
+          msg.type === "system"
+            ? "center"
+            : msg.user?.username === user.username
+            ? "right"
+            : "left";
+
+        return (
+          <C.SpetchBubble message={msg} position={position} notch={notch} />
+        );
+      })}
     </S.Container>
   );
 };
