@@ -39,6 +39,7 @@ export const BoxDash = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    gap: 0.1rem;
   }
 
   @media (min-width: 1920px) {

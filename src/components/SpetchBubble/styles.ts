@@ -135,10 +135,14 @@ export const BoxTop = styled.div<T.IBoxTopProps>`
 
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
 
     & > .box_avatar {
+      width: 40px;
       min-width: 40px;
       max-width: 40px;
+      height: 40px;
       min-height: 40px;
       max-height: 40px;
 
@@ -173,7 +177,7 @@ export const BoxTop = styled.div<T.IBoxTopProps>`
   }
 `;
 
-export const BoxBottom = styled.div`
+export const BoxBottom = styled.div<T.IBoxBottomProps>`
   @media (min-width: 481px) {
   }
 
@@ -187,7 +191,8 @@ export const BoxBottom = styled.div`
     width: 100%;
 
     display: flex;
-    justify-content: flex-end;
+    justify-content: ${(props) =>
+      props.position === "left" ? "flex-end" : "flex-start"};
 
     font-size: 7pt;
 

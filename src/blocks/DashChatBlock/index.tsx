@@ -28,7 +28,12 @@ export const DashChatBlock = () => {
               ? "right"
               : "left";
 
-          return (
+          return notch ? (
+            <>
+              <C.Separator height="1rem" />
+              <C.SpetchBubble message={msg} position={position} notch={notch} />
+            </>
+          ) : (
             <C.SpetchBubble message={msg} position={position} notch={notch} />
           );
         })}

@@ -19,7 +19,7 @@ export const SpetchBubble = ({
       {message.type !== "system" ? (
         <S.Bubble notch={notch} position={position} className="bubble">
           <S.BoxTop isLoggedUser={isLoggedUser}>
-            {notch && (
+            {notch && position === "left" && (
               <div className="box_avatar">
                 <img src={message.user?.image} alt={message.user?.name} />
               </div>
@@ -31,8 +31,14 @@ export const SpetchBubble = ({
                 <p key={uuid()}>{txt}</p>
               ))}
             </div>
+
+            {notch && position === "right" && (
+              <div className="box_avatar">
+                <img src={message.user?.image} alt={message.user?.name} />
+              </div>
+            )}
           </S.BoxTop>
-          <S.BoxBottom>
+          <S.BoxBottom position={position}>
             <small>{message.info.hour}</small>
           </S.BoxBottom>
         </S.Bubble>
