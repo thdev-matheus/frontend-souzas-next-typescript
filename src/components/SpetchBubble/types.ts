@@ -15,3 +15,7 @@ export interface ISBubbleProps {
   position: "left" | "center" | "right";
   notch: boolean;
 }
+
+export interface IBoxTopProps {
+  isLoggedUser: boolean;
+}

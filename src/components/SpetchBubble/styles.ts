@@ -75,6 +75,9 @@ export const Bubble = styled.div<T.ISBubbleProps>`
     width: fit-content;
     max-width: 60%;
 
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     position: relative;
 
     padding: 1rem 1.5rem;
@@ -82,6 +85,113 @@ export const Bubble = styled.div<T.ISBubbleProps>`
     border-radius: 0.5rem;
 
     background-color: ${(props) => props.theme.bgSecondary};
+  }
+
+  @media (min-width: 1920px) {
+  }
+`;
+
+export const BoxSystem = styled.div`
+  @media (min-width: 481px) {
+  }
+
+  @media (min-width: 768px) {
+  }
+
+  @media (min-width: 992px) {
+  }
+
+  @media (min-width: 1200px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.5rem 0.8rem;
+
+    border-radius: 0.5rem;
+
+    font-size: 9pt;
+
+    background-color: ${(props) => props.theme.bgSecondary};
+  }
+
+  @media (min-width: 1920px) {
+  }
+`;
+
+export const BoxTop = styled.div<T.IBoxTopProps>`
+  @media (min-width: 481px) {
+  }
+
+  @media (min-width: 768px) {
+  }
+
+  @media (min-width: 992px) {
+  }
+
+  @media (min-width: 1200px) {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+
+    & > .box_avatar {
+      min-width: 40px;
+      max-width: 40px;
+      min-height: 40px;
+      max-height: 40px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 50%;
+
+      overflow: hidden;
+
+      & > img {
+        height: 100%;
+      }
+    }
+
+    & > .box_content {
+      width: 100%;
+
+      & > h4 {
+        margin-bottom: 0.2rem;
+        color: ${(props) =>
+          props.isLoggedUser ? props.theme.primary : props.theme.secondary};
+      }
+      & > p {
+        word-wrap: break-word;
+      }
+    }
+  }
+
+  @media (min-width: 1920px) {
+  }
+`;
+
+export const BoxBottom = styled.div`
+  @media (min-width: 481px) {
+  }
+
+  @media (min-width: 768px) {
+  }
+
+  @media (min-width: 992px) {
+  }
+
+  @media (min-width: 1200px) {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+
+    font-size: 7pt;
+
+    color: ${(props) => props.theme.txtPrimary}40;
   }
 
   @media (min-width: 1920px) {
