@@ -14,6 +14,8 @@ export const Container = styled.section`
     width: 100%;
     height: 90%;
 
+    padding: 3rem 10vw;
+
     overflow: hidden auto;
 
     border: 1px solid green;
