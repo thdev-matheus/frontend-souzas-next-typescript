@@ -3,7 +3,7 @@ import { IUser } from "../UserProvider/types";
 
 export interface IMessageContext {
   messages: IMessage[];
-  addMessage: (msg: IMessage[]) => void;
+  addMessage: (msg: IMessage) => void;
 }
 
 export interface IMessageProviderProps {
@@ -13,16 +13,10 @@ export interface IMessageProviderProps {
 export interface IMessage {
   id: string;
   user?: IUser;
-  type: "text" | "photo" | "system";
-  text?: string;
-  data?: {
-    uri: string;
-    size: number;
+  type: "text" | "system";
+  content: string[];
+  info: {
+    date: string;
+    hour: string;
   };
-  replyData?: {
-    title: "Emre";
-    titleColor: "#8717ae";
-    message: "Nice to meet you";
-  };
-  date: Date;
 }

@@ -1,17 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import * as S from "./styles";
+import * as C from "@/components";
 import { useMessages, useUser } from "@/providers";
-import { Input } from "react-chat-elements";
+import { IMessage } from "@/providers/MessageProvider/types";
+import * as U from "@/utils";
+import { useState } from "react";
 import { IoSend } from "react-icons/io5";
 import { v4 as uuid } from "uuid";
-import { IMessage } from "@/providers/MessageProvider/types";
+import * as S from "./styles";
 
 export const FormChatBlock = () => {
   const [inputValue, setInputValue] = useState<string>("");
 
-  const { addMessage } = useMessages();
+  const { addMessage, messages } = useMessages();
   const { user } = useUser();
 
   const handleSendMessage = () => {
@@ -19,43 +20,27 @@ export const FormChatBlock = () => {
       return;
     }
 
-    const messages: IMessage[] = [];
-    const splitMsg = inputValue.split("\n");
+    const newMessage: IMessage = {
+      id: uuid(),
+      type: "text",
+      user,
+      info: U.getDateHour(),
+      content: inputValue.split("\n"),
+    };
 
-    splitMsg.forEach((msg) => {
-      const newMessage = {
-        id: uuid(),
-        user: user,
-        text: msg,
-        date: new Date(),
-      };
-
-      messages.unshift({ ...newMessage, type: "text" });
-    });
-
-    addMessage(messages);
-
-    document.getElementsByTagName("textarea")[0]["value"] = "";
     setInputValue("");
+
+    addMessage(newMessage);
   };
 
   return (
     <S.Container>
-      <Input
-        maxHeight={70}
-        autoHeight={true}
-        multiline={true}
-        className="input send_message"
+      <C.TextArea
         placeholder="Digite sua mensagem"
-        defaultValue=""
+        icon={IoSend}
         value={inputValue}
-        clear={() => {
-          setInputValue("");
-        }}
-        onChange={(e: any) => {
-          setInputValue(e.target.value);
-        }}
-        rightButtons={<IoSend onClick={() => handleSendMessage()} />}
+        iconAction={handleSendMessage}
+        onChange={(e) => setInputValue(e.target.value)}
       />
     </S.Container>
   );
