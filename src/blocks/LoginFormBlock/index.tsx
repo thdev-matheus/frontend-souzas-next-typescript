@@ -37,7 +37,7 @@ export const LoginFormBlock = () => {
 
   return (
     <S.Container>
-      <h2>Faça Seu Login</h2>
+      <h2>Faça seu Login</h2>
 
       <S.Form onSubmit={handleSubmit(handleLogin)}>
         <C.Input
