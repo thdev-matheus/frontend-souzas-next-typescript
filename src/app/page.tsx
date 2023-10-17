@@ -5,8 +5,7 @@ import * as S from "./styles";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Triangle } from "react-loader-spinner";
-import { socket } from "@/socket";
-import { souzasAPI } from "@/api/souzas";
+import { souzasAPI, souzasSocket } from "@/api/souzas";
 
 export default function HomePage() {
   const [isloading, setIsLoading] = useState(true);
@@ -20,18 +19,14 @@ export default function HomePage() {
     changeMessage("carregando banco de dados");
 
     await souzasAPI.get("");
-  };
 
-  const awakeSocket = async () => {
     changeMessage("carregando conexões");
 
-    socket({ id: "", image: "", name: "", username: "", token: "" });
+    await souzasSocket.get("");
   };
 
   const loadAPI = async () => {
     await awakeDatabase();
-
-    await awakeSocket();
 
     setTimeout(() => {
       changeMessage("Preparando tudo");

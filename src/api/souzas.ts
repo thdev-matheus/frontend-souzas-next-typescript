@@ -7,3 +7,10 @@ export const souzasAPI = axios.create({
     "https://souzas-database.onrender.com",
   timeout: 30000,
 });
+
+export const souzasSocket = axios.create({
+  baseURL:
+    process.env.BASE_URL_USER_DATABASE ||
+    "https://souzas-database.onrender.com",
+  timeout: 30000,
+});
