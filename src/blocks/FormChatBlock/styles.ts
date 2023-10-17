@@ -1,28 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  @media (min-width: 481px) {
-  }
+  width: 100%;
+  min-height: 10%;
 
-  @media (min-width: 768px) {
-  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 
-  @media (min-width: 992px) {
-  }
+  padding: 1rem 10vw;
 
-  @media (min-width: 1200px) {
-    width: 100%;
-    min-height: 10%;
-
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-
-    padding: 1rem 10vw;
-
-    background-color: ${(props) => props.theme.bgTertiary};
-  }
-
-  @media (min-width: 1920px) {
-  }
+  background-color: ${(props) => props.theme.bgTertiary};
 `;
