@@ -29,10 +29,9 @@ export default function HomePage() {
   };
 
   const loadAPI = async () => {
-    setTimeout(() => {
-      awakeDatabase();
-      awakeSocket();
-    }, 2000);
+    await awakeDatabase();
+
+    await awakeSocket();
 
     setTimeout(() => {
       changeMessage("Preparando tudo");

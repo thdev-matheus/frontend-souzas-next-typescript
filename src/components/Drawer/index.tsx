@@ -6,11 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { IoMdClose } from "react-icons/io";
 
-import { useDarkMode } from "@/providers";
-
 export const Drawer = ({ actionClose, children }: T.IDrawerProps) => {
-  const { isDarkMode } = useDarkMode();
-
   return (
     <AnimatePresence>
       <S.Container>
