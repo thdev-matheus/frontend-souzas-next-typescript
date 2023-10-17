@@ -11,8 +11,6 @@ import * as S from "./styles";
 
 export const FormChatBlock = () => {
   const [inputValue, setInputValue] = useState<string>("");
-
-  const { addMessage, messages } = useMessages();
   const { user, socket } = useUser();
 
   const handleSendMessage = () => {
@@ -28,11 +26,12 @@ export const FormChatBlock = () => {
       content: inputValue.split("\n"),
     };
 
+    socket?.emit("users");
+
     socket?.emit("chat", newMessage);
     setTimeout(() => {
       setInputValue("");
     }, 100);
-    // addMessage(newMessage);
   };
 
   return (

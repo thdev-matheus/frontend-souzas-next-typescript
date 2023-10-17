@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 export const DashChatBlock = () => {
   const { messages, addMessage } = CTX.useMessages();
-  const { user, socket } = CTX.useUser();
+  const { user, socket, setLoggedUsers, loggedUsers } = CTX.useUser();
   const router = useRouter();
 
   useEffect(() => {
@@ -26,10 +26,19 @@ export const DashChatBlock = () => {
       addMessage(msg);
     });
 
+    socket?.on("users", (response) => {
+      setLoggedUsers(response);
+    });
+
+    socket?.emit("users");
+
     return () => {
       socket?.off("chat");
+      socket?.off("users");
     };
-  }, []);
+  }, [socket]);
+
+  console.log(loggedUsers);
 
   return (
     <S.Container id="dashchatmessages">

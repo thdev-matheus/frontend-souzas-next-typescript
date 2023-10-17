@@ -2,7 +2,9 @@ import { io } from "socket.io-client";
 import { IUser } from "./providers/UserProvider/types";
 import "dotenv/config";
 
+const isDev = true;
+
 export const socket = (user: IUser) =>
-  io(process.env.BASE_URL_SOCKET || "https://souzas-socket.onrender.com", {
+  io(isDev ? "http://localhost:8081" : "https://souzas.onrender.com", {
     query: user,
   });
