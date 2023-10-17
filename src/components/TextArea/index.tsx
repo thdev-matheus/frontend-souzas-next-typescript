@@ -16,7 +16,14 @@ export const TextArea = forwardRef<HTMLTextAreaElement, T.ITextareaProps>(
   ) => {
     const [rows, setRows] = useState(1);
     const handleKeyPress = (e: any) => {
-      if (e.key === "Enter" && e.target.rows < maxRows) {
+      if (e.key === "Enter" && !e.shiftKey && !e.altKey && !e.ctrlKey) {
+        iconAction && iconAction();
+        const dash = document.getElementById("dashchatmessages");
+        dash?.scrollTo(0, dash.scrollHeight + 1000);
+        setRows(1);
+      }
+
+      if (e.shiftKey && e.key === "Enter" && e.target.rows < maxRows) {
         setRows(rows + 1);
       }
     };

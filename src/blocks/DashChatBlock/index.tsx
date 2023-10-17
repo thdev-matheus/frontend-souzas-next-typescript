@@ -19,7 +19,8 @@ export const DashChatBlock = () => {
       return;
     }
 
-    document.getElementById("dashchatmessages")?.scrollTo(0, 10000000);
+    const dash = document.getElementById("dashchatmessages");
+    dash?.scrollTo(0, dash.scrollHeight + 1000);
 
     socket?.on("chat", (msg) => {
       addMessage(msg);
@@ -29,8 +30,6 @@ export const DashChatBlock = () => {
       socket?.off("chat");
     };
   }, []);
-
-  console.log(messages);
 
   return (
     <S.Container id="dashchatmessages">

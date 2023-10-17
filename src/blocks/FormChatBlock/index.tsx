@@ -16,7 +16,7 @@ export const FormChatBlock = () => {
   const { user, socket } = useUser();
 
   const handleSendMessage = () => {
-    if (!inputValue) {
+    if (!inputValue.trim()) {
       return;
     }
 
@@ -28,9 +28,10 @@ export const FormChatBlock = () => {
       content: inputValue.split("\n"),
     };
 
-    setInputValue("");
-
     socket?.emit("chat", newMessage);
+    setTimeout(() => {
+      setInputValue("");
+    }, 100);
     // addMessage(newMessage);
   };
 
