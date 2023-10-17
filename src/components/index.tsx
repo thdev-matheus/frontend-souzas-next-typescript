@@ -5,6 +5,7 @@ import { Separator } from "./Separator";
 import { Input } from "./Input";
 import { TextArea } from "./TextArea";
 import { SpetchBubble } from "./SpetchBubble";
+import { Logo } from "./Logo";
 
 export {
   Drawer,
@@ -14,4 +15,5 @@ export {
   Input,
   TextArea,
   SpetchBubble,
+  Logo,
 };

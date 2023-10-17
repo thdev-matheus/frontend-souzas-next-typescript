@@ -2,13 +2,13 @@
 
 import * as S from "./styles";
 import * as B from "@/blocks";
+import * as C from "@/components";
 
 export default function LoginPage() {
   return (
     <S.Container>
       <S.BoxLogo>
-        <h1>Souza'S</h1>
-        <h2>O chat da família</h2>
+        <C.Logo />
       </S.BoxLogo>
       <S.BoxForm>
         <B.LoginFormBlock />
