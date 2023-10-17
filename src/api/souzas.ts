@@ -1,5 +1,8 @@
 import axios from "axios";
+import "dotenv/config";
 
 export const souzasAPI = axios.create({
-  baseURL: "http://localhost:8081",
+  baseURL:
+    process.env.BASE_URL_USER_DATABASE ||
+    "https://souzas-database.onrender.com",
 });

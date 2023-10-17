@@ -34,8 +34,10 @@ export const UserProvider = ({ children }: T.IUserProviderProps) => {
       setUser(newUser);
       setSocket(SOCKET(newUser));
 
-      toast.success("Conectado"), router.push("/chat");
+      toast.success("Conectado"), router.push(`/chat/${newUser.id}`);
     } catch (error) {
+      console.log(error);
+
       throw new Error();
     }
   };
