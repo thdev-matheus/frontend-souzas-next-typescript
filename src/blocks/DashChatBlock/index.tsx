@@ -15,7 +15,7 @@ export const DashChatBlock = () => {
 
   useEffect(() => {
     if (!user.token) {
-      router.push("/login");
+      router.push("/");
       return;
     }
 
