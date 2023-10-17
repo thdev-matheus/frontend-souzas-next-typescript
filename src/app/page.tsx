@@ -1,95 +1,80 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-export default function Home() {
+import * as C from "@/components";
+import * as S from "./styles";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Triangle } from "react-loader-spinner";
+import { socket } from "@/socket";
+import { souzasAPI } from "@/api/souzas";
+
+export default function HomePage() {
+  const [isloading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState("Carregando recursos");
+
+  const router = useRouter();
+
+  const changeMessage = (text: string) => setMessage(text);
+
+  const awakeDatabase = async () => {
+    changeMessage("carregando banco de dados");
+
+    await souzasAPI.get("");
+  };
+
+  const awakeSocket = async () => {
+    changeMessage("carregando conexões");
+
+    socket({ id: "", image: "", name: "", username: "", token: "" });
+  };
+
+  const loadAPI = async () => {
+    await awakeDatabase();
+
+    await awakeSocket();
+
+    setTimeout(() => {
+      changeMessage("Preparando tudo");
+    }, 3000);
+
+    setTimeout(() => {
+      changeMessage("Concluido!");
+    }, 4500);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 7500);
+  };
+
+  useEffect(() => {
+    loadAPI();
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <S.Container>
+      <div>
+        <C.Logo />
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      {isloading ? (
+        <S.BoxLoading>
+          <Triangle
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="triangle-loading"
+            wrapperStyle={{}}
+            visible={true}
+          />
+          <h3>{message}</h3>
+        </S.BoxLoading>
+      ) : (
+        <S.BoxButton>
+          <C.Button
+            label="ir para login"
+            onAction={() => router.push("/login")}
+          />
+        </S.BoxButton>
+      )}
+    </S.Container>
+  );
 }
