@@ -1,25 +1,21 @@
 "use client";
 
-import * as S from "./styles";
 import * as C from "@/components";
-import { useRouter } from "next/navigation";
-
+import { useUser } from "@/providers";
+import { IUserLogin } from "@/providers/UserProvider/types";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-
-interface IUserLogin {
-  username: string;
-  password: string;
-}
+import * as S from "./styles";
+import { FaLock, FaUser } from "react-icons/fa";
 
 export const LoginFormBlock = () => {
-  const router = useRouter();
+  const { login } = useUser();
 
   const { reset, handleSubmit, register } = useForm<IUserLogin>({
     reValidateMode: "onSubmit",
   });
 
-  const handleLogin = (data: IUserLogin) => {
+  const handleLogin = async (data: IUserLogin) => {
     if (!data.username) {
       toast.error("Digite o usuário");
     }
@@ -31,9 +27,12 @@ export const LoginFormBlock = () => {
       return;
     }
 
-    console.log(data);
-    reset();
-    router.push("/chat");
+    try {
+      await login(data);
+      reset();
+    } catch (error) {
+      toast.error("Credenciais inválidas");
+    }
   };
 
   return (
@@ -42,13 +41,16 @@ export const LoginFormBlock = () => {
 
       <S.Form onSubmit={handleSubmit(handleLogin)}>
         <C.Input
+          icon={FaUser}
           placeholder="Digite seu usuário"
           borderRadius=".5rem"
           {...register("username")}
         />
         <C.Input
+          icon={FaLock}
           placeholder="Digite sua senha"
           borderRadius=".5rem"
+          type="password"
           {...register("password")}
         />
 

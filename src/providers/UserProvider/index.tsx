@@ -2,8 +2,11 @@
 
 import { createContext, useState, useEffect, useContext } from "react";
 import * as T from "./types";
-
-import { v4 as uuid } from "uuid";
+import { souzasAPI } from "@/api/souzas";
+import { Socket } from "socket.io-client";
+import { socket as SOCKET } from "@/socket";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const UserContext = createContext<T.IUserContext>({} as T.IUserContext);
 
@@ -14,14 +17,32 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }: T.IUserProviderProps) => {
-  const [user, setUser] = useState<T.IUser>({
-    id: "theusid",
-    image:
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-    name: "Matheus Vieira",
-    username: "Theus",
-  });
+  const [user, setUser] = useState<T.IUser>({} as T.IUser);
+  const [socket, setSocket] = useState<Socket | null>(null);
+
+  const router = useRouter();
+
+  const login = async (data: T.IUserLogin) => {
+    try {
+      const response = await souzasAPI.post("/session/login", data);
+
+      const newUser = {
+        ...response.data.user,
+        token: response.data.token,
+      };
+
+      setUser(newUser);
+      setSocket(SOCKET(newUser));
+
+      toast.success("Conectado"), router.push("/chat");
+    } catch (error) {
+      throw new Error();
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ user, login, socket }}>
+      {children}
+    </UserContext.Provider>
   );
 };

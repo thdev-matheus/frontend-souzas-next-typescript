@@ -6,14 +6,31 @@ import * as C from "@/components";
 
 import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import { useRouter } from "next/navigation";
 
 export const DashChatBlock = () => {
-  const { messages } = CTX.useMessages();
-  const { user } = CTX.useUser();
+  const { messages, addMessage } = CTX.useMessages();
+  const { user, socket } = CTX.useUser();
+  const router = useRouter();
 
   useEffect(() => {
+    if (!user.token) {
+      router.push("/login");
+      return;
+    }
+
     document.getElementById("dashchatmessages")?.scrollTo(0, 10000000);
+
+    socket?.on("chat", (msg) => {
+      addMessage(msg);
+    });
+
+    return () => {
+      socket?.off("chat");
+    };
   }, []);
+
+  console.log(messages);
 
   return (
     <S.Container id="dashchatmessages">

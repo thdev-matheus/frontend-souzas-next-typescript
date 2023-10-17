@@ -13,7 +13,7 @@ export const FormChatBlock = () => {
   const [inputValue, setInputValue] = useState<string>("");
 
   const { addMessage, messages } = useMessages();
-  const { user } = useUser();
+  const { user, socket } = useUser();
 
   const handleSendMessage = () => {
     if (!inputValue) {
@@ -30,7 +30,8 @@ export const FormChatBlock = () => {
 
     setInputValue("");
 
-    addMessage(newMessage);
+    socket?.emit("chat", newMessage);
+    // addMessage(newMessage);
   };
 
   return (
