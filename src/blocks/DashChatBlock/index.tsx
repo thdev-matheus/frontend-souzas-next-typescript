@@ -26,19 +26,10 @@ export const DashChatBlock = () => {
       addMessage(msg);
     });
 
-    socket?.on("users", (response) => {
-      setLoggedUsers(response);
-    });
-
-    socket?.emit("users");
-
     return () => {
       socket?.off("chat");
-      socket?.off("users");
     };
   }, [socket]);
-
-  console.log(loggedUsers);
 
   return (
     <S.Container id="dashchatmessages">

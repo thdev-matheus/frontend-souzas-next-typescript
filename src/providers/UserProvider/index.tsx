@@ -23,7 +23,15 @@ export const UserProvider = ({ children }: T.IUserProviderProps) => {
 
   const router = useRouter();
 
-  const logout = () => socket.disconnect();
+  const logout = () => {
+    setTimeout(() => {
+      router.push("/");
+    }, 1000);
+    setUser({} as T.IUser);
+    setLoggedUsers([]);
+    socket.disconnect();
+    setSocket(null);
+  };
 
   const login = async (data: T.IUserLogin) => {
     try {

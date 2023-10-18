@@ -26,8 +26,6 @@ export const FormChatBlock = () => {
       content: inputValue.split("\n"),
     };
 
-    socket?.emit("users");
-
     socket?.emit("chat", newMessage);
     setTimeout(() => {
       setInputValue("");
