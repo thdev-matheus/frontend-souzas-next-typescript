@@ -4,6 +4,7 @@ import { IUser } from "../UserProvider/types";
 export interface IMessageContext {
   messages: IMessage[];
   addMessage: (msg: IMessage) => void;
+  clearMessages: () => void;
 }
 
 export interface IMessageProviderProps {

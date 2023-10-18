@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@/providers";
+import { useMessages, useUser } from "@/providers";
 import * as S from "./styles";
 import * as C from "@/components";
 import { FaInfoCircle } from "react-icons/fa";
@@ -11,6 +11,7 @@ import { v4 as uuid } from "uuid";
 export const UsersInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { loggedUsers, socket, setLoggedUsers, logout } = useUser();
+  const { clearMessages } = useMessages();
 
   const toggleIsOpen = () => setIsOpen(!isOpen);
 
@@ -47,7 +48,12 @@ export const UsersInfo = () => {
           >
             <div className="header">
               <h3>Usuários Logados</h3>
-              <FiLogOut onClick={logout} />
+              <FiLogOut
+                onClick={() => {
+                  logout();
+                  clearMessages();
+                }}
+              />
             </div>
 
             {loggedUsers.map((usr) => (
