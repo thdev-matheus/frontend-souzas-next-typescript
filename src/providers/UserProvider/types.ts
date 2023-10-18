@@ -1,9 +1,12 @@
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import { Socket } from "socket.io-client";
 
 export interface IUserContext {
   user: IUser;
+  loggedUsers: IUser[];
+  setLoggedUsers: Dispatch<SetStateAction<IUser[]>>;
   login: (data: IUserLogin) => Promise<void>;
+  logout: () => void;
   socket: Socket | null;
 }
 

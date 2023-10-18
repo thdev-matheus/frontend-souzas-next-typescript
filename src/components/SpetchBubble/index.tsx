@@ -26,7 +26,7 @@ export const SpetchBubble = ({
             )}
 
             <div className="box_content">
-              {notch && <h4>{message.user?.username}</h4>}
+              {notch && <h4>{message.user?.name}</h4>}
               {message.content.map((txt) => (
                 <p key={uuid()}>{txt}</p>
               ))}

@@ -18,9 +18,20 @@ export const useUser = () => {
 
 export const UserProvider = ({ children }: T.IUserProviderProps) => {
   const [user, setUser] = useState<T.IUser>({} as T.IUser);
+  const [loggedUsers, setLoggedUsers] = useState<T.IUser[]>([]);
   const [socket, setSocket] = useState<Socket | null>(null);
 
   const router = useRouter();
+
+  const logout = () => {
+    setTimeout(() => {
+      router.push("/");
+    }, 1000);
+    setUser({} as T.IUser);
+    setLoggedUsers([]);
+    socket.disconnect();
+    setSocket(null);
+  };
 
   const login = async (data: T.IUserLogin) => {
     try {
@@ -32,9 +43,12 @@ export const UserProvider = ({ children }: T.IUserProviderProps) => {
       };
 
       setUser(newUser);
-      setSocket(SOCKET(newUser));
 
-      toast.success("Conectado"), router.push(`/chat/${newUser.id}`);
+      toast.success("Conectado");
+      router.push(`/chat/${newUser.id}`);
+      setTimeout(() => {
+        setSocket(SOCKET(newUser));
+      }, 1000);
     } catch (error) {
       console.log(error);
 
@@ -43,7 +57,9 @@ export const UserProvider = ({ children }: T.IUserProviderProps) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, socket }}>
+    <UserContext.Provider
+      value={{ user, login, socket, loggedUsers, logout, setLoggedUsers }}
+    >
       {children}
     </UserContext.Provider>
   );

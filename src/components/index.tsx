@@ -6,6 +6,7 @@ import { Input } from "./Input";
 import { TextArea } from "./TextArea";
 import { SpetchBubble } from "./SpetchBubble";
 import { Logo } from "./Logo";
+import { UserCard } from "./UserCard";
 
 export {
   Drawer,
@@ -16,4 +17,5 @@ export {
   TextArea,
   SpetchBubble,
   Logo,
+  UserCard,
 };

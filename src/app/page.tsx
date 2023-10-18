@@ -5,7 +5,7 @@ import * as S from "./styles";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Triangle } from "react-loader-spinner";
-import { souzasAPI, souzasSocket } from "@/api/souzas";
+import { souzasAPI } from "@/api/souzas";
 
 export default function HomePage() {
   const [isloading, setIsLoading] = useState(true);
@@ -15,30 +15,28 @@ export default function HomePage() {
 
   const changeMessage = (text: string) => setMessage(text);
 
-  const awakeDatabase = async () => {
-    changeMessage("carregando banco de dados");
-
+  const loadAPI = async () => {
     await souzasAPI.get("");
 
-    changeMessage("carregando conexões");
+    setTimeout(() => {
+      changeMessage("carregando banco de dados");
+    }, 1500);
 
-    await souzasSocket.get("");
-  };
-
-  const loadAPI = async () => {
-    await awakeDatabase();
+    setTimeout(() => {
+      changeMessage("carregando conexões");
+    }, 2800);
 
     setTimeout(() => {
       changeMessage("Preparando tudo");
-    }, 3000);
+    }, 4000);
 
     setTimeout(() => {
       changeMessage("Concluido!");
-    }, 4500);
+    }, 5500);
 
     setTimeout(() => {
       setIsLoading(false);
-    }, 7500);
+    }, 7800);
   };
 
   useEffect(() => {
